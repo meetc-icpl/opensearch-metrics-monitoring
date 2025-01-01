@@ -30,26 +30,28 @@ The monitoring stack consists of:
 ## Installation Steps
 
 ### 1. Clone the Repository
-```bash
-git clone <your-repository-url>
-cd <project-directory>
+    ```bash
+    git clone <your-repository-url>
+    cd <project-directory>
 
-2. Configure Environment
+### 2. Configure Environment
 
     Modify docker-compose.yml to set custom passwords.
     Adjust memory and resource allocations as needed.
 
-3. Start the Stack
-```bash
-docker-compose up -d
+### 3. Start the Stack
+    ```bash
+    docker-compose up -d
 
-Access Points
+---
+
+### Access Points
 
     OpenSearch Dashboards: http://localhost:5601
     Prometheus: http://localhost:9090
     Grafana: http://localhost:3000
 
-Default Credentials
+### Default Credentials
 
     Grafana:
         Username: admin
@@ -57,20 +59,20 @@ Default Credentials
     OpenSearch:
         Initial Admin Password: Set in docker-compose.yml
 
-Monitoring Configuration
+### Monitoring Configuration
 
-The setup automatically:
+## The setup automatically:
 
     Installs Prometheus Exporter for OpenSearch.
     Configures metric collection.
     Enables performance monitoring.
 
-Customization
+## Customization
 
     Modify Prometheus configuration in ./prometheus/prometheus.yml.
     Adjust Grafana dashboards as per your monitoring requirements.
 
-Troubleshooting
+### Troubleshooting
 
     Check container logs:
     ```bash
