@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 15s  # Default scrape interval
+  evaluation_interval: 15s  # Default evaluation interval
+
+scrape_configs:
+  # Scrape Prometheus itself
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    static_configs:
+      - targets: ['172.17.16.26:9090'] # 172.17.16.26   192.168.1.7
+
+  # Scrape OpenSearch Dashboards
+  - job_name: 'opensearch-dashboard'
+    scheme: https  # Assuming Dashboards is running on HTTP
+    basic_auth:
+      username: 'admin'
+      password: 'your_password'    # Set your password
+    static_configs:
+      - targets: ['localhost:5601'] # 172.17.16.26   192.168.1.7
+
+  # Scrape OpenSearch indexer with basic authentication
+  - job_name: 'opensearch-indexer'
+    scheme: https
+    scrape_interval: 10s
+    metrics_path: "/_prometheus/metrics"
+    basic_auth:
+      username: 'admin'
+      password: 'your_password'   # Set your password
+    tls_config:
+      insecure_skip_verify: true  # For testing; configure proper TLS for production
+    static_configs:
+      - targets: ['172.17.16.26:9200'] # 172.17.16.26   192.168.1.7
